@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+  <link th:href="@{/main.css}" rel="stylesheet" /> 
+ 
+  </head>
+
+  <body>
+  <div align="center">
+  <form action="#" th:action="@{/tickets/addticket}" th:object="${ticket}" method="post">
+  <fieldset>
+  <legend> Add New Ticket : </legend>
+    <label for="movieName">Movie Name</label>
+    <input type="text" th:field="*{movieName}" id="movieName" placeholder="movieName">
+    <span th:if="${#fields.hasErrors('movieName')}" th:errors="*{movieName}"></span>
+    <label for="custId">Customer Id</label>
+    <input type="number" th:field="*{custId}" id="custId" placeholder="custId">
+    <span th:if="${#fields.hasErrors('custId')}" th:errors="*{custId}"></span>
+    <label for="amountPaid">Amount Paid</label>
+    <input type="text" th:field="*{amountPaid}" id="amountPaid" placeholder="amountPaid">
+    <span th:if="${#fields.hasErrors('amountPaid')}" th:errors="*{amountPaid}"></span>
+
+  <label for="numberofTicket">Number of Ticket</label>
+    <input type="number" th:field="*{numberofTicket}" id="numberofTicket" placeholder="numberofTicket">
+    <span th:if="${#fields.hasErrors('numberofTicket')}" th:errors="*{numberofTicket}"></span>
+
+	<label for="date">Date</label>
+    <input type="date" th:field="*{date}" th:value="${#temporals.second(localDate)}" id="date" placeholder="date">
+    <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+    <label for="time">Time</label>
+    <input type="time" th:field="*{time}" th:value="${#temporals.second(localTime)}"  id="date" placeholder="time">
+    <span th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></span>
+ <label for="venue">Venue</label>
+    <input type="text" th:field="*{venue}"   id="venue" placeholder="venue">
+    <span th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}"></span>
+
+    <input type="submit" value="Add ticket">
+    </fieldset>
+</form>
+  
+  
+  </div>
+  </body>
+  </html>

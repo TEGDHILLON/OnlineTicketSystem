@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+ <link th:href="@{/main.css}" rel="stylesheet" /> 
+ 
+  </head>
+
+  <body>
+  <div align="center">
+ <div th:switch="${movies}">
+    <h2 th:case="null">No movies yet!</h2>
+        <div th:case="* ">
+            <h2>movies</h2>
+            <table>
+                <thead>
+                    <tr>
+                    <th>Id</th>
+                        <th>Name</th>
+                        <th>Language</th>
+                        <th>Genre</th>
+                        <th>duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="movie : ${movies}">
+                    <td th:text="${movie.movieId}"></td>
+                    <td th:text="${movie.movieName}"></td>
+                    <td th:text="${movie.movieLanguage}"></td>
+                    <td th:text="${movie.movieGenre}"></td>
+                    <td th:text="${movie.duration}"></td>
+                    <td><a th:href="@{movies/edit/{id}(id=${movie.movieId})}">Edit</a></td>
+                    <td><a th:href="@{movies/delete/{id}(id=${movie.movieId})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/movies/addmovie">Add a new movie</a></p>
+</div>
+  
+  
+  </div>
+  </body>
+  </html>

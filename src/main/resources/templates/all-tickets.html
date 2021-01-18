@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+ <link th:href="@{/main.css}" rel="stylesheet" /> 
+ 
+  </head>
+
+  <body>
+  <div align="center">
+ <div th:switch="${tickets}">
+    <h2 th:case="null">No tickets yet!</h2>
+        <div th:case="* ">
+            <h2>tickets</h2>
+            <table>
+                <thead>
+                    <tr>
+                    <th>Id</th>
+                        <th>Movie Name</th>
+                        <th>Customer Id</th>
+                        <th>Amount Paid</th>
+                        <th>Number of Ticket</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Venue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ticket : ${tickets}">
+                    <td th:text="${ticket.ticketId}"></td>
+                    <td th:text="${ticket.movieName}"></td>
+                    <td th:text="${ticket.custId}"></td>
+                    <td th:text="${ticket.amountPaid}"></td>
+                    <td th:text="${ticket.numberofTicket}"></td>
+                    <td th:text="${ticket.date}"></td>
+                    <td th:text="${ticket.time}"></td>
+                    <td th:text="${ticket.venue}"></td>
+                    <td><a th:href="@{tickets/edit/{id}(id=${ticket.ticketId})}">Edit</a></td>
+                    <td><a th:href="@{tickets/delete/{id}(id=${ticket.ticketId})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/tickets/addticket">Add a new ticket</a></p>
+</div>
+  
+  
+  </div>
+  </body>
+  </html>

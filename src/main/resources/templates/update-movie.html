@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+  <link th:href="@{/main.css}" rel="stylesheet" /> 
+ 
+  </head>
+
+  <body>
+  <div align="center">
+  <form action="#" th:action="@{/movies/edit/{id}(id=${movie.movieId})}" th:object="${movie}" method="post">
+  <fieldset>
+  <legend> Edit Movie : </legend>
+    <label for="movieName">Name</label>
+    <input type="text" th:field="*{movieName}" id="movieName" placeholder="movieName">
+    <span th:if="${#fields.hasErrors('movieName')}" th:errors="*{movieName}"></span>
+    <label for="movieLanguage">Language</label>
+    <input type="text" th:field="*{movieLanguage}" id="movieLanguage" placeholder="movieLanguage">
+    <span th:if="${#fields.hasErrors('movieLanguage')}" th:errors="*{movieLanguage}"></span>
+    <label for="movieGenre">movieGenre</label>
+    <input type="text" th:field="*{movieGenre}" id="movieGenre" placeholder="movieGenre">
+    <span th:if="${#fields.hasErrors('movieGenre')}" th:errors="*{movieGenre}"></span>
+    <label for="duration">duration</label>
+    <input type="time" th:field="*{duration}" th:value="${#temporals.second(localTime)}" id="duration" placeholder="duration">
+    <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></span>
+    <input type="submit" value="Edit movie">
+    </fieldset>
+</form>
+  
+  
+  </div>
+  </body>
+  </html>
